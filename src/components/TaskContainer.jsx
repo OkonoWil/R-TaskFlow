@@ -32,21 +32,14 @@ export const TaskContainer = () => {
         return taskList.filter(task => task.completed).length;
     }
 
-    const displayTaskList = () => {
-        console.log(taskList.length > 0)
-        if (TaskList.length >= 2) {
-            return <TaskList tasks={taskList} completed={toggleTaskCompletion} remove={removeTask} totalCompleted={taskCompleted()}/>;
-        }
-        else{
-            return <div></div>
-        }
-    }
-
     return (
         <main className=" min-w-[400px] w-full max-w-screen-md">
             <Header/>
             <TaskInput addTask={addTask}/>
-            {displayTaskList()}
+            {taskList.length > 0 && (
+                <TaskList tasks={taskList} completed={toggleTaskCompletion} remove={removeTask} totalCompleted={taskCompleted()}/>
+                )
+            }
             <Footer totalCompleted={taskCompleted()} totalTask={taskList.length} />
         </main>
     );
